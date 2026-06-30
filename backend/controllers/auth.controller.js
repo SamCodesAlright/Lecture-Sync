@@ -3,6 +3,8 @@ import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";
 
 export const loginUser = async (req, res) => {
+  console.log("===== LOGIN ENDPOINT HIT =====");
+  console.log("Request Body:", req.body);
   try {
     const { email, password } = req.body;
     const trimmedEmail = typeof email === "string" ? email.trim() : "";
@@ -19,6 +21,7 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email: normalizedEmail }).select(
       "+password",
     );
+    console.log("User found:", user?.email);
 
     if (!user) {
       return res.status(401).json({
@@ -39,6 +42,7 @@ export const loginUser = async (req, res) => {
     }
 
     const token = generateToken(user);
+    console.log("Login successful");
 
     res.status(200).json({
       success: true,
