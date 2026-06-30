@@ -45,14 +45,30 @@ Instructor users get their own panel where they can view assigned lectures, trac
 
 ![Admin Dashboard - 2](/screenshots/admin_dashboard_2.png)
 
-<!-- Screenshot of Login Page -->
-![Login Page](/screenshots/login_page.png)
+### Course Page Overview - 1
 
-<!-- Screenshot of Admin Dashboard - 1 -->
-![Admin Dashboard - 1](/screenshots/admin_dashboard_1.png)
+![Course Page - 1](/screenshots/course_page_1.png)
 
-<!-- Screenshot of Admin Dashboard - 2 -->
-![Admin Dashboard - 2](/screenshots/admin_dashboard_2.png)
+### Course Page Overview - 2
+
+![Course Page - 2](/screenshots/course_page_2.png)
+
+### Course Page Overview - 3
+
+![Course Page - 3](/screenshots/course_page_3.png)
+
+### Lecture Page Overview
+
+![Lecture Page - 1](/screenshots/lecture_page.png)
+
+### Instructor Page Overview
+
+![Instructor Page - 2](/screenshots/instructor_page.png)
+
+## Instructor Dashboard
+
+![Instructor Dashboard - 1](/screenshots/instructor_dashboard.png)
+
 
 ## Key Features
 
