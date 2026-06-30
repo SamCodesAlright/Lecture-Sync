@@ -31,12 +31,11 @@ connectDB();
 //   }),
 // );
 
-const allowedOrigins = ["http://localhost:5173", process.env.FRONTEND_URL];
-
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true,
+    origin: ["http://localhost:5173", process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
