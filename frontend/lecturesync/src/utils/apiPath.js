@@ -1,11 +1,5 @@
-// Default API URLs
-const DEFAULT_DEV_API_URL = "http://localhost:3000";
-const DEFAULT_PROD_API_URL = "https://your-backend-url.onrender.com";
-
 // Base URL
-export const BASE_URL = import.meta.env.DEV
-  ? import.meta.env.VITE_API_URL_DEV || DEFAULT_DEV_API_URL
-  : import.meta.env.VITE_API_URL || DEFAULT_PROD_API_URL;
+export const BASE_URL = import.meta.env.VITE_API_URL;
 
 // API Endpoints
 export const API_PATHS = {
