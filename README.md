@@ -6,7 +6,6 @@
 ![Node.js](https://img.shields.io/badge/Node.js-Express%205.2.1-339933?logo=node.js&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose%209.7.3-47A248?logo=mongodb&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5.2.1-000000?logo=express&logoColor=white)
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
 
 ## Table of Contents
@@ -21,9 +20,6 @@
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
 - [Folder Structure](#folder-structure)
-- [Future Improvements](#future-improvements)
-- [Author / Contact](#author--contact)
-- [License](#license)
 
 ## Overview
 
@@ -35,14 +31,14 @@ Instructor users get their own panel where they can view assigned lectures, trac
 
 ## Demo / Screenshots
 
-<!-- Add screenshot of Admin Dashboard here -->
-![Admin Dashboard](docs/screenshots/admin-dashboard.png)
+<!-- Screenshot of Login Page -->
+![Login Page](/screenshots/login_page.png)
 
-<!-- Add screenshot of Course Detail page here -->
-![Course Detail](docs/screenshots/course-detail.png)
+<!-- Screenshot of Admin Dashboard - 1 -->
+![Admin Dashboard - 1](/screenshots/admin_dashboard_1.png)
 
-<!-- Add screenshot of Instructor Panel here -->
-![Instructor Panel](docs/screenshots/instructor-panel.png)
+<!-- Screenshot of Admin Dashboard - 2 -->
+![Admin Dashboard - 2](/screenshots/admin_dashboard_2.png)
 
 ## Key Features
 
