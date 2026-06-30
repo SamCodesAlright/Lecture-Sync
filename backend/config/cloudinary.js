@@ -11,11 +11,6 @@ dotenv.config({ path: join(__dirname, "../.env") });
 const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
   process.env;
 
-console.log("Cloudinary config check:");
-console.log("Cloud Name:", CLOUDINARY_CLOUD_NAME ? "Set" : "Missing");
-console.log("API Key:", CLOUDINARY_API_KEY ? "Set" : "Missing");
-console.log("API Secret:", CLOUDINARY_API_SECRET ? "Set" : "Missing");
-
 if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_API_KEY || !CLOUDINARY_API_SECRET) {
   throw new Error(
     "Missing Cloudinary configuration. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in your environment variables.",
@@ -28,10 +23,5 @@ cloudinary.config({
   api_secret: CLOUDINARY_API_SECRET,
   secure: true,
 });
-
-console.log("Cloudinary configured with:");
-console.log("Cloud name:", CLOUDINARY_CLOUD_NAME);
-console.log("API Key:", CLOUDINARY_API_KEY.substring(0, 8) + "...");
-console.log("API Secret:", CLOUDINARY_API_SECRET.substring(0, 8) + "...");
 
 export default cloudinary;
