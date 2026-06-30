@@ -31,6 +31,20 @@ Instructor users get their own panel where they can view assigned lectures, trac
 
 ## Demo / Screenshots
 
+## Login Page
+
+![Login Page](/screenshots/login_page.png)
+
+## Admin Dashboard
+
+### Dashboard Overview - 1
+
+![Admin Dashboard - 1](/screenshots/admin_dashboard_1.png)
+
+### Dashboard Overview - 2
+
+![Admin Dashboard - 2](/screenshots/admin_dashboard_2.png)
+
 <!-- Screenshot of Login Page -->
 ![Login Page](/screenshots/login_page.png)
 
