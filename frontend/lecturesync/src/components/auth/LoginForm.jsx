@@ -28,13 +28,36 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) });
 
-  const onSubmit = async ({ email, password }) => {
-    setServerError("");
+  // const onSubmit = async ({ email, password }) => {
+  //   setServerError("");
 
+  //   try {
+  //     const response = await authService.login(email, password);
+  //     login(response.token, response.user);
+  //     toast.success("Logged in successfully.");
+
+  //     if (response.user.role === "admin") {
+  //       navigate("/admin/dashboard", { replace: true });
+  //     } else {
+  //       navigate("/instructor/dashboard", { replace: true });
+  //     }
+  //   } catch (error) {
+  //     const message =
+  //       error?.message ||
+  //       error?.error ||
+  //       "Unable to login. Please check your credentials and try again.";
+  //     setServerError(message);
+  //     toast.error(message);
+  //   }
+  // };
+
+  const onSubmit = async ({ email, password }) => {
     try {
       const response = await authService.login(email, password);
+
+      console.log("LOGIN RESPONSE:", response);
+
       login(response.token, response.user);
-      toast.success("Logged in successfully.");
 
       if (response.user.role === "admin") {
         navigate("/admin/dashboard", { replace: true });
@@ -42,11 +65,13 @@ const LoginForm = () => {
         navigate("/instructor/dashboard", { replace: true });
       }
     } catch (error) {
+      console.log("LOGIN ERROR:", error);
+
       const message =
         error?.message ||
         error?.error ||
         "Unable to login. Please check your credentials and try again.";
-      setServerError(message);
+
       toast.error(message);
     }
   };
