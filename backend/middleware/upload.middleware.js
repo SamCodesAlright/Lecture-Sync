@@ -1,6 +1,4 @@
-import streamifier from "streamifier";
-import cloudinary from "../config/cloudinary.js";
-
+// ── Store image locally (required — used for POST /courses) ──
 const uploadToCloudinary = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).json({
@@ -9,38 +7,41 @@ const uploadToCloudinary = async (req, res, next) => {
     });
   }
 
-  try {
-    const uploadStream = cloudinary.uploader.upload_stream(
-      {
-        folder: "course-images",
-        resource_type: "image",
-      },
-      (error, result) => {
-        if (error) {
-          console.error("Cloudinary upload failed:", error);
-          return res.status(500).json({
-            success: false,
-            message: "Failed to upload course image. Please try again.",
-          });
-        }
+  console.log("Image stored locally:", req.file.path);
+  
+  // Construct the URL to access the image
+  const baseUrl = process.env.SERVER_URL || `${req.protocol}://${req.get("host")}`;
+  const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
+  
+  req.cloudinaryImage = {
+    url: imageUrl,
+    public_id: req.file.filename,
+  };
 
-        req.cloudinaryImage = {
-          url: result.secure_url,
-          public_id: result.public_id,
-        };
+  next();
+};
 
-        next();
-      },
-    );
-
-    streamifier.createReadStream(req.file.buffer).pipe(uploadStream);
-  } catch (error) {
-    console.error("Cloudinary upload error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to upload course image. Please try again.",
-    });
+// ── Store image locally (optional — used for PUT /courses/:id) ─
+// If no file is attached the middleware simply calls next() without setting
+// req.cloudinaryImage, and the controller will keep the existing image.
+const uploadToCloudinaryOptional = async (req, res, next) => {
+  if (!req.file) {
+    return next(); // no new image — proceed without touching req.cloudinaryImage
   }
+
+  console.log("Image stored locally:", req.file.path);
+  
+  // Construct the URL to access the image
+  const baseUrl = process.env.SERVER_URL || `${req.protocol}://${req.get("host")}`;
+  const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
+  
+  req.cloudinaryImage = {
+    url: imageUrl,
+    public_id: req.file.filename,
+  };
+
+  next();
 };
 
 export default uploadToCloudinary;
+export { uploadToCloudinaryOptional };

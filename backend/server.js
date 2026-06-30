@@ -57,6 +57,17 @@ app.use((req, res) => {
   });
 });
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error("Global error handler:", err);
+  console.error("Error stack:", err.stack);
+  res.status(500).json({
+    success: false,
+    message: err.message || "Internal Server Error",
+    statusCode: 500,
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running in ${process.env.NODE_ENV} on port ${PORT}`);
