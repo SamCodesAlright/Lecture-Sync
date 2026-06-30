@@ -74,36 +74,30 @@ Instructor users get their own panel where they can view assigned lectures, trac
 
 ### Admin Panel
 
-- Role-protected admin dashboard with totals for courses, instructors, lectures, and upcoming lectures.
-- Upcoming lectures card showing the next scheduled sessions.
-- Recent lectures table showing latest lecture assignments.
-- Course management with searchable course list.
-- Add course flow with name, level, description, required image upload, validation, and live preview.
-- Edit course flow with existing image preview and optional image replacement.
-- Delete course flow with confirmation modal.
-- Instructor directory with searchable instructor name/email table.
-- Lecture assignment form with course dropdown, instructor dropdown, date picker, assignment summary, and reset action.
+- Secure admin dashboard accessible only to administrators.
+- Displays an overview of total courses, instructors, lectures, and upcoming lectures.
+- Shows recently assigned lectures for quick monitoring.
+- Manage courses by adding, editing, searching, and deleting course information.
+- Upload and update course images while creating or editing a course.
+- View and search the list of registered instructors.
+- Assign lectures by selecting a course, instructor, and lecture date.
 
 ### Instructor Panel
 
-- Role-protected instructor dashboard.
-- Personalized greeting based on the logged-in instructor.
-- Assigned lecture table with course, date, and status.
-- Lecture status labels for today, upcoming, and past lectures.
-- Instructor lecture statistics for total, today, upcoming, and completed lectures.
-- Search lectures by course name.
+- Secure dashboard accessible only to instructors.
+- View all assigned lectures with course details, dates, and current status.
+- Shows lecture statistics, including total, today's, upcoming, and completed lectures.
+- Search assigned lectures by course name for quick access.
 
 ### Core Logic
 
-- JWT-based login and protected API access.
-- Role-based frontend routing for admin and instructor panels.
-- Backend admin authorization middleware for course mutations and lecture administration.
-- Automatic instructor clash detection when assigning lectures on the same date.
-- Express Validator validation for login, courses, and lecture assignment requests.
-- Zod + React Hook Form validation on frontend forms.
-- Password hashing with bcryptjs before saving users.
-- Local image upload storage through Multer with file type and size checks.
-- Axios request interceptor that attaches Bearer tokens from localStorage.
+- Secure user authentication using JWT.
+- Role-based access control for Admin and Instructor accounts.
+- Prevents instructors from being assigned multiple lectures on the same date.
+- Validates user input on both the frontend and backend.
+- Passwords are securely encrypted before being stored.
+- Supports course image uploads with validation.
+- Automatically includes authentication tokens in protected API requests.
 
 ## Tech Stack
 
