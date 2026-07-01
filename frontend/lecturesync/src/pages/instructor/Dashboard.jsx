@@ -16,7 +16,7 @@ import Badge from "../../components/common/Badge.jsx";
 import LoadingSkeleton from "../../components/common/LoadingSkeleton.jsx";
 import EmptyState from "../../components/common/EmptyState.jsx";
 
-// ── Helpers ────────────────────────────────────────────────────────
+// Helpers
 const formatDate = (value) =>
   new Intl.DateTimeFormat("en-US", {
     weekday: "short",
@@ -64,7 +64,7 @@ const InstructorDashboard = () => {
     fetchLectures();
   }, [fetchLectures]);
 
-  // ── Derived stats ──────────────────────────────────────────────
+  // Derived stats
   const stats = useMemo(() => {
     const now = new Date();
     now.setHours(0, 0, 0, 0);
@@ -83,7 +83,7 @@ const InstructorDashboard = () => {
     return { total: lectures.length, upcoming, today, past };
   }, [lectures]);
 
-  // ── Sorted & filtered ──────────────────────────────────────────
+  // Sorted & filtered
   const sortedAndFiltered = useMemo(() => {
     const now = new Date();
     now.setHours(0, 0, 0, 0);
@@ -103,12 +103,12 @@ const InstructorDashboard = () => {
         if (aFuture && !bFuture) return -1;
         if (!aFuture && bFuture) return 1;
         return aFuture
-          ? aDate - bDate   // upcoming: ascending (soonest first)
-          : bDate - aDate;  // past: descending (most recent first)
+          ? aDate - bDate // upcoming: ascending (soonest first)
+          : bDate - aDate; // past: descending (most recent first)
       });
   }, [lectures, search]);
 
-  // ── Table columns ──────────────────────────────────────────────
+  // Table columns
   const columns = [
     {
       header: "Course",
@@ -150,7 +150,7 @@ const InstructorDashboard = () => {
     },
   ];
 
-  // ── Greeting ───────────────────────────────────────────────────
+  // Greeting and date label
   const hour = new Date().getHours();
   const greeting =
     hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
@@ -166,14 +166,18 @@ const InstructorDashboard = () => {
     return (
       <div className="space-y-6">
         <LoadingSkeleton variant="card" count={3} className="rounded-3xl p-6" />
-        <LoadingSkeleton variant="table" count={5} className="rounded-3xl p-6" />
+        <LoadingSkeleton
+          variant="table"
+          count={5}
+          className="rounded-3xl p-6"
+        />
       </div>
     );
   }
 
   return (
     <div className="space-y-8">
-      {/* ── Header ──────────────────────────────────────────── */}
+      {/* Header */}
       <PageHeader
         title={`${greeting}, ${user?.name?.split(" ")[0] ?? "Instructor"} 👋`}
         subtitle="Here's your personal lecture schedule and overview."
@@ -184,7 +188,7 @@ const InstructorDashboard = () => {
         }
       />
 
-      {/* ── Stat cards ──────────────────────────────────────── */}
+      {/* Stat cards */}
       <section aria-label="Lecture statistics">
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           <StatCard
@@ -218,7 +222,7 @@ const InstructorDashboard = () => {
         </div>
       </section>
 
-      {/* ── Lecture table ────────────────────────────────────── */}
+      {/* Lecture table */}
       <section aria-label="My lectures">
         <div className="mb-4">
           <p className="text-sm font-medium uppercase tracking-[0.24em] text-blue-600">

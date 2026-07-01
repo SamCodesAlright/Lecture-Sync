@@ -8,20 +8,18 @@ const axiosInstance = axios.create({
   },
 });
 
-// ==========================
 // Request Interceptor
-// ==========================
 axiosInstance.interceptors.request.use(
   (config) => {
-    // Get JWT token from localStorage
+    // Fetching JWT token from localStorage
     const token = localStorage.getItem("token");
 
-    // Attach Authorization header
+    // Attaching Authorization header
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    // Don't override Content-Type for FormData
+    // Preventing override Content-Type for FormData
     if (!(config.data instanceof FormData)) {
       config.headers["Content-Type"] = "application/json";
     }
@@ -31,46 +29,44 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// ==========================
 // Response Interceptor
-// ==========================
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    // JWT expired or invalid
+    // Checking if JWT is expired or invalid
     if (error.response?.status === 401) {
       console.error("Unauthorized. Please login again.");
 
       localStorage.removeItem("token");
       localStorage.removeItem("user");
 
-      // Prevent redirect loop
+      // Preventing redirect loop
       if (window.location.pathname !== "/login") {
         window.location.href = "/login";
       }
     }
 
-    // Forbidden
+    // Handling Forbidden status
     if (error.response?.status === 403) {
       console.error("Access denied.");
     }
 
-    // Not Found
+    // Handling Not Found status
     if (error.response?.status === 404) {
       console.error("Requested resource not found.");
     }
 
-    // Validation Error
+    // Handling Validation Error
     if (error.response?.status === 400) {
       console.error(error.response.data?.message || "Bad Request");
     }
 
-    // Server Error
+    // Handling Server Error
     if (error.response?.status >= 500) {
       console.error("Internal Server Error");
     }
 
-    // Request Timeout
+    // Handling Request Timeout
     if (error.code === "ECONNABORTED") {
       console.error("Request timeout.");
     }

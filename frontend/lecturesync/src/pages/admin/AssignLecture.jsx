@@ -13,7 +13,7 @@ import Select from "../../components/common/Select.jsx";
 import Input from "../../components/common/Input.jsx";
 import LoadingSkeleton from "../../components/common/LoadingSkeleton.jsx";
 
-// ── Zod schema ─────────────────────────────────────────────────────
+// Zod schema
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 
@@ -52,7 +52,7 @@ const AssignLecturePage = () => {
   const watchedInstructor = watch("instructor");
   const watchedDate = watch("lectureDate");
 
-  // ── Fetch dropdown data ────────────────────────────────────────
+  // Fetching dropdown data
   useEffect(() => {
     const load = async () => {
       setLoadingData(true);
@@ -72,7 +72,7 @@ const AssignLecturePage = () => {
     load();
   }, []);
 
-  // ── Submit ─────────────────────────────────────────────────────
+  // Form submission handler
   const onSubmit = async (data) => {
     setConflictError("");
     setSubmitting(true);
@@ -85,7 +85,6 @@ const AssignLecturePage = () => {
       toast.success("Lecture assigned successfully!");
       reset();
     } catch (err) {
-      // Surface conflict or other backend message prominently
       const msg = err?.message || "Failed to assign lecture.";
       if (
         msg.toLowerCase().includes("already") ||
@@ -100,9 +99,11 @@ const AssignLecturePage = () => {
     }
   };
 
-  // ── Derived display data ───────────────────────────────────────
+  // Derived data for summary card
   const selectedCourse = courses.find((c) => c._id === watchedCourse);
-  const selectedInstructor = instructors.find((i) => i._id === watchedInstructor);
+  const selectedInstructor = instructors.find(
+    (i) => i._id === watchedInstructor,
+  );
   const formattedDate = watchedDate
     ? new Intl.DateTimeFormat("en-US", {
         weekday: "long",
@@ -138,7 +139,7 @@ const AssignLecturePage = () => {
       />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
-        {/* ── Left: form ─────────────────────────────────────── */}
+        {/* Left: form  */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
@@ -200,17 +201,13 @@ const AssignLecturePage = () => {
             >
               Reset
             </Button>
-            <Button
-              type="submit"
-              loading={submitting}
-              icon={CalendarCheck}
-            >
+            <Button type="submit" loading={submitting} icon={CalendarCheck}>
               Assign Lecture
             </Button>
           </div>
         </form>
 
-        {/* ── Right: summary card ────────────────────────────── */}
+        {/* Right: summary card */}
         <div className="sticky top-6 space-y-4">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">

@@ -8,7 +8,7 @@ const Header = ({ onToggleSidebar }) => {
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-sm px-4 py-3 shadow-sm sm:px-6">
       <div className="flex items-center justify-between gap-3">
-        {/* ── Left: hamburger + page label ── */}
+        {/* Left: hamburger + page label */}
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -24,7 +24,7 @@ const Header = ({ onToggleSidebar }) => {
           </p>
         </div>
 
-        {/* ── Right: user pill + logout ── */}
+        {/* Right: user pill + logout */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* User pill */}
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700 shadow-sm">

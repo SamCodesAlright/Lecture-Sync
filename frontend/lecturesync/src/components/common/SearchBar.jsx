@@ -32,7 +32,7 @@ const SearchBar = ({
 
     window.clearTimeout(timeoutRef.current);
     timeoutRef.current = window.setTimeout(() => {
-      onChange?.(next); // pass raw string
+      onChange?.(next); // passing raw string
     }, debounceMs);
   };
 

@@ -39,8 +39,8 @@ const EditCoursePage = () => {
 
   const [loadingCourse, setLoadingCourse] = useState(true);
   const [existingImage, setExistingImage] = useState(null); // Cloudinary URL
-  const [newImageFile, setNewImageFile] = useState(null);   // File obj if replacing
-  const [imagePreview, setImagePreview] = useState(null);   // blob URL for new file
+  const [newImageFile, setNewImageFile] = useState(null); // File obj if replacing
+  const [imagePreview, setImagePreview] = useState(null); // blob URL for new file
   const [imageError, setImageError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -56,7 +56,7 @@ const EditCoursePage = () => {
   const watchedLevel = watch("level") || "";
   const watchedDescription = watch("description") || "";
 
-  // ── Fetch course data ──────────────────────────────────────
+  // Fetching course data
   useEffect(() => {
     const load = async () => {
       setLoadingCourse(true);
@@ -81,7 +81,7 @@ const EditCoursePage = () => {
     load();
   }, [id, reset, navigate]);
 
-  // ── Image handlers ─────────────────────────────────────────
+  // Image handlers
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -107,7 +107,7 @@ const EditCoursePage = () => {
     setImageError("");
   };
 
-  // ── Submit ─────────────────────────────────────────────────
+  // Submit handler
   const onSubmit = async (data) => {
     // If there's no existing image AND no new one provided, block
     if (!existingImage && !newImageFile) {
@@ -132,7 +132,7 @@ const EditCoursePage = () => {
     }
   };
 
-  // ── Determine which image to show in preview ───────────────
+  // Determining which image to show in preview
   const previewSrc = imagePreview || existingImage;
 
   if (loadingCourse) {
@@ -160,7 +160,7 @@ const EditCoursePage = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
-          {/* ── Left: form fields ── */}
+          {/* Left: form fields */}
           <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
             <h2 className="text-lg font-semibold text-slate-900">
               Course details
@@ -196,7 +196,7 @@ const EditCoursePage = () => {
               {...register("description")}
             />
 
-            {/* ── Image section ── */}
+            {/* Image section*/}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-sm font-medium text-slate-700">
@@ -233,7 +233,9 @@ const EditCoursePage = () => {
                   <Upload className="h-4 w-4" />
                 </div>
                 <p className="text-sm font-medium text-slate-700">
-                  {existingImage ? "Upload a replacement image" : "Upload an image"}
+                  {existingImage
+                    ? "Upload a replacement image"
+                    : "Upload an image"}
                 </p>
                 <p className="text-xs text-slate-500">
                   JPEG, PNG, WEBP · max 5 MB
@@ -263,7 +265,7 @@ const EditCoursePage = () => {
             </div>
           </div>
 
-          {/* ── Right: live preview ── */}
+          {/* Right: live preview */}
           <div className="space-y-4">
             <div className="sticky top-6 space-y-4">
               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -304,16 +306,20 @@ const EditCoursePage = () => {
                       )}
                     </div>
                     <p className="text-xs text-slate-500 line-clamp-3">
-                      {watchedDescription || "Course description will appear here."}
+                      {watchedDescription ||
+                        "Course description will appear here."}
                     </p>
                   </div>
                 </div>
               </div>
 
               <div className="rounded-3xl border border-amber-100 bg-amber-50 p-5 text-sm">
-                <p className="font-semibold text-amber-900 mb-1">Editing mode</p>
+                <p className="font-semibold text-amber-900 mb-1">
+                  Editing mode
+                </p>
                 <p className="text-xs text-amber-700">
-                  Leave the image field blank to keep the existing image. Upload a new file only if you want to replace it.
+                  Leave the image field blank to keep the existing image. Upload
+                  a new file only if you want to replace it.
                 </p>
               </div>
             </div>

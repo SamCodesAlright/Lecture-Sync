@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext.jsx";
 const ProtectedRoute = ({ allowedRoles = [] }) => {
   const { user, loading, isAuthenticated } = useAuth();
 
-  // Show loading while checking authentication
+  // Displaying loading while checking authentication
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">

@@ -33,7 +33,7 @@ const Sidebar = ({ role, isOpen, onClose }) => {
 
   return (
     <>
-      {/* ── Mobile overlay ── */}
+      {/* Mobile overlay */}
       <div
         className={`fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm transition-opacity lg:hidden ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
@@ -42,7 +42,7 @@ const Sidebar = ({ role, isOpen, onClose }) => {
         aria-hidden="true"
       />
 
-      {/* ── Sidebar panel ── */}
+      {/* Sidebar panel */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-slate-200 bg-white px-5 py-8 shadow-xl transition-transform duration-300 lg:static lg:translate-x-0 lg:shadow-none ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -71,7 +71,11 @@ const Sidebar = ({ role, isOpen, onClose }) => {
         </div>
 
         {/* Nav links */}
-        <nav className="flex-1 space-y-1" role="navigation" aria-label="Sidebar">
+        <nav
+          className="flex-1 space-y-1"
+          role="navigation"
+          aria-label="Sidebar"
+        >
           {links.map((link) => {
             const Icon = link.icon;
             return (
@@ -91,7 +95,9 @@ const Sidebar = ({ role, isOpen, onClose }) => {
                   <>
                     <Icon
                       className={`h-4 w-4 flex-shrink-0 transition ${
-                        isActive ? "text-white" : "text-slate-500 group-hover:text-slate-700"
+                        isActive
+                          ? "text-white"
+                          : "text-slate-500 group-hover:text-slate-700"
                       }`}
                     />
                     {link.label}

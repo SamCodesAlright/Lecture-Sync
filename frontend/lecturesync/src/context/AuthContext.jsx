@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     checkAuthStatus();
   }, []);
 
-  // Check if user is already logged in
+  // Checking if user is already logged in
   const checkAuthStatus = async () => {
     try {
       const token = localStorage.getItem("token");

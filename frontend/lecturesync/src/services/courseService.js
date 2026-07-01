@@ -2,7 +2,7 @@ import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPath";
 
 /**
- * Build a FormData payload for course create / update.
+ * Built a FormData payload for course create / update.
  * Fields: name, level, description, image (File | null).
  * If image is null/undefined it is omitted (for update without re-uploading).
  */
